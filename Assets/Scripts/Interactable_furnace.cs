@@ -34,7 +34,9 @@ public class Interactable_furnace : Interactables
             for (int x = 0; x < lights.Count; x++)
             {
                 lights[x].intensity = Mathf.Max(intensities[x], lights[x].intensity) * (currentFuelLeft / fuelTimer);
+                
             }
+            FindObjectOfType<AudioSource>().volume = currentFuelLeft / fuelTimer;
         }
         // FindObjectsOfType<Light>().intensity *= currentFuelLeft / fuelTimer;
 
@@ -56,6 +58,7 @@ public class Interactable_furnace : Interactables
 
     private IEnumerator lightRise()
     {
+        FindObjectOfType<AudioSource>().volume = 1.0f;
         float timer = 0.0f;
 
         while (timer < refuelTime)
